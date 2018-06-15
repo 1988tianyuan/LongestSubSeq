@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 /**
  * 有一个整形数组A，请设计一个复杂度为O(n)的算法，算出排序后相邻两数的最大差值。

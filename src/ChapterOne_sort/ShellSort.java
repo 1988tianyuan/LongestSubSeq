@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 /**
  * 希尔排序时间复杂度取决于步长gap的选择，在O(n3/2)—O(n2)之间，空间复杂度为O(1)

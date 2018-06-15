@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 import java.util.Comparator;
 

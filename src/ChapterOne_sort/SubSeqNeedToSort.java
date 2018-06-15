@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 /**
  * 计算需要排序的最短子数组的长度

@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 /**
  * 有两个从小到大排序以后的数组A和B，其中A的末端有足够的缓冲空容纳B。请编写一个方法，将B合并入A并排序。

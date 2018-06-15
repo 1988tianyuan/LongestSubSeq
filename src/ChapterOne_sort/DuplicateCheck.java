@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 /**
  * 未采用递归的堆排序，用于判断数组是否有重复值

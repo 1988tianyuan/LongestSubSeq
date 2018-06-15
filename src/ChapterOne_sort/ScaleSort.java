@@ -1,4 +1,4 @@
-package algorithmPracticeChapterOne;
+package ChapterOne_sort;
 
 /**
  * 改良版堆排序，适用于数组元素位置与有序后位置差值不大于k的情况

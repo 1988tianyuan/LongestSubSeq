@@ -1,7 +1,4 @@
-package algorithmPracticeChapterOne;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package ChapterOne_sort;
 
 /**
  * 普通快速排序，选取数组最右端的元素为切分指标
