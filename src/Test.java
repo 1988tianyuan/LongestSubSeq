@@ -10,14 +10,12 @@ public class Test {
     private static Random random = new Random();
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
     public static void main(String[] args){
-        BiggestSquare biggestSquare = new BiggestSquare();
-        char[][]matrix = {{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','1','1','1'}};
-        System.out.println(biggestSquare.maximalSquare(matrix));
-
-
+        int[] nums = new int[]{-2, 1, 6, -1, 5};
+        System.out.println(MaxSubArray.maxSubArray(nums));
     }
 
 
 
 
 }
+
