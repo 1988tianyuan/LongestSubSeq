@@ -10,8 +10,9 @@ public class Test {
     private static Random random = new Random();
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
     public static void main(String[] args){
-        int[] nums = new int[]{-2, 1, 6, -1, 5};
-        System.out.println(MaxSubArray.maxSubArray(nums));
+        int[] nums = new int[]{2,7,9,3,1};
+        HouseRobber robber = new HouseRobber();
+        System.out.println(robber.rob(nums));
     }
 
 
