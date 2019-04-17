@@ -1,4 +1,4 @@
-package leetcode_China;
+package leetcode_China.dp;
 
 public class ClimbStair {
 
