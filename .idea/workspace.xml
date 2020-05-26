@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fd5f9e1-ada1-4ce0-8998-1278c6b8a91c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/leetcode_China/SumNums.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/leetcode_China/queue/TwoStacksToQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,7 +81,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SumNums">
+  <component name="RunManager" selected="Application.TwoStacksToQueue">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -138,13 +138,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TransformWord" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChapterTwo_string.TransformWord" />
+    <configuration name="TwoStacksToQueue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="leetcode_China.queue.TwoStacksToQueue" />
       <module name="algorithmTest" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ChapterTwo_string.*" />
+          <option name="PATTERN" value="leetcode_China.queue.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -185,18 +185,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Test" />
-      <item itemvalue="Application.TransformWord" />
       <item itemvalue="Application.StringToInteger" />
       <item itemvalue="Application.StringCompress" />
       <item itemvalue="Application.SumNums" />
+      <item itemvalue="Application.TwoStacksToQueue" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TwoStacksToQueue" />
         <item itemvalue="Application.SumNums" />
         <item itemvalue="Application.StringCompress" />
         <item itemvalue="Application.StringToInteger" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.TransformWord" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +265,8 @@
       <workItem from="1555486395861" duration="2242000" />
       <workItem from="1586847459720" duration="9214000" />
       <workItem from="1589771259612" duration="2878000" />
-      <workItem from="1590050828204" duration="2293000" />
+      <workItem from="1590050828204" duration="2471000" />
+      <workItem from="1590473268787" duration="2009000" />
     </task>
     <task id="LOCAL-00001" summary="4月26日">
       <created>1524745713511</created>
