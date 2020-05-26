@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fd5f9e1-ada1-4ce0-8998-1278c6b8a91c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/leetcode_China/queue/TwoStacksToQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/leetcode_China/tree/RebuildTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,9 +81,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TwoStacksToQueue">
+  <component name="RunManager" selected="Application.RebuildTree">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RebuildTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="leetcode_China.tree.RebuildTree" />
+      <module name="algorithmTest" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="leetcode_China.tree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,14 +140,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="algorithmTest" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,19 +190,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Test" />
       <item itemvalue="Application.StringToInteger" />
       <item itemvalue="Application.StringCompress" />
       <item itemvalue="Application.SumNums" />
       <item itemvalue="Application.TwoStacksToQueue" />
+      <item itemvalue="Application.RebuildTree" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RebuildTree" />
         <item itemvalue="Application.TwoStacksToQueue" />
         <item itemvalue="Application.SumNums" />
         <item itemvalue="Application.StringCompress" />
         <item itemvalue="Application.StringToInteger" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -266,7 +272,7 @@
       <workItem from="1586847459720" duration="9214000" />
       <workItem from="1589771259612" duration="2878000" />
       <workItem from="1590050828204" duration="2471000" />
-      <workItem from="1590473268787" duration="2009000" />
+      <workItem from="1590473268787" duration="10131000" />
     </task>
     <task id="LOCAL-00001" summary="4月26日">
       <created>1524745713511</created>
@@ -321,6 +327,22 @@
     <MESSAGE value="6月16日&#10;牛客网算法课第一阶段练习" />
     <MESSAGE value="7月28日&#10;牛客网算法课第二阶段练习，加上一些LeetCode" />
     <option name="LAST_COMMIT_MESSAGE" value="7月28日&#10;牛客网算法课第二阶段练习，加上一些LeetCode" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/leetcode_China/tree/RebuildTree.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/LongestSubSeq$RebuildTree.ic" NAME="RebuildTree Coverage Results" MODIFIED="1590488770992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>leetcode_China.tree.*</FILTER>
+    </SUITE>
   </component>
   <component name="masterDetails">
     <states>
