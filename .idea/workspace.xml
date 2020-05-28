@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fd5f9e1-ada1-4ce0-8998-1278c6b8a91c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/leetcode_China/dp/MatrixWordPath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/leetcode_China/dp/MatrixWordPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode_China/dp/MatrixWordPath.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -255,7 +255,7 @@
       <workItem from="1586847459720" duration="9214000" />
       <workItem from="1589771259612" duration="2878000" />
       <workItem from="1590050828204" duration="2471000" />
-      <workItem from="1590473268787" duration="27390000" />
+      <workItem from="1590473268787" duration="28624000" />
     </task>
     <task id="LOCAL-00001" summary="4月26日">
       <created>1524745713511</created>
@@ -310,17 +310,6 @@
     <MESSAGE value="6月16日&#10;牛客网算法课第一阶段练习" />
     <MESSAGE value="7月28日&#10;牛客网算法课第二阶段练习，加上一些LeetCode" />
     <option name="LAST_COMMIT_MESSAGE" value="7月28日&#10;牛客网算法课第二阶段练习，加上一些LeetCode" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/leetcode_China/dp/MatrixWordPath.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LongestSubSeq$RebuildTree.ic" NAME="RebuildTree Coverage Results" MODIFIED="1590488770992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

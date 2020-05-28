@@ -9,7 +9,7 @@ package leetcode_China.dp;
  * ['a','d','e','e']]
  * 但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
  * 
- * 提示：暴力遍历 + 深度优先搜索 + 剪枝 
+ * 提示：全局遍历 + 深度优先搜索
  */
 public class MatrixWordPath {
 	
@@ -77,9 +77,9 @@ public class MatrixWordPath {
 	public static boolean exist(char[][] board, String word) {
 		char[] chars = new char[word.length()];
 		word.getChars(0, word.length(), chars, 0);
+		boolean[][] flagMatrix = new boolean[board.length][board[0].length];
 		for (int rowIndex = 0; rowIndex < board.length; rowIndex++) {
 			for (int colIndex = 0; colIndex < board[0].length; colIndex++) {
-				boolean[][] flagMatrix = new boolean[board.length][board[0].length];
 				if (search(colIndex, rowIndex, chars, board, 0, flagMatrix)) {
 					return true;
 				}
