@@ -10,9 +10,16 @@ package leetcode_China.dp;
  * 偷窃到的最高金额 = 1 + 3 = 4 。
  */
 public class HouseRobber {
+    
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,1};
+        System.out.println(rob(nums));
+    }
 
-    public int rob(int[] nums) {
-        if (nums == null || nums.length == 0) return 0;
+    public static int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
         int dp0 = 0;
         int dp1 = 0;
         int temp;

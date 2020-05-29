@@ -12,7 +12,7 @@ package leetcode_China.dp;
  * 10,2,5,7,101
  * [1,3,6,7,9,4,10,5,6]
  */
-public class LongestIncreasSubSeq {
+public class LongestIncreaseSubSeq {
 
 	public int lengthOfLIS(int[] nums) {
 		int len;
