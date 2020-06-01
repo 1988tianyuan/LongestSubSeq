@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fd5f9e1-ada1-4ce0-8998-1278c6b8a91c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/leetcode_China/dp/LongestSubString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/leetcode_China/dp/MaxSubArraySum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/algorithmTest/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/algorithmTest/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/leetcode_China/dp/HouseRobber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode_China/dp/HouseRobber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/leetcode_China/dp/LongestIncreasSubSeq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode_China/dp/LongestIncreaseSubSeq.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,10 +38,16 @@
   </component>
   <component name="ProjectId" id="1aWNbDoYw0OI9wemLJlTyBmb3gc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555488620182" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -59,19 +61,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.LongestSubString">
+  <component name="RunManager" selected="Application.MaxSubArraySum">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -120,13 +110,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RebuildTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="leetcode_China.tree.RebuildTree" />
+    <configuration name="MaxSubArraySum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="leetcode_China.dp.MaxSubArraySum" />
       <module name="algorithmTest" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="leetcode_China.tree.*" />
+          <option name="PATTERN" value="leetcode_China.dp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,13 +124,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TwoStacksToQueue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="leetcode_China.queue.TwoStacksToQueue" />
+    <configuration name="RebuildTree" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="leetcode_China.tree.RebuildTree" />
       <module name="algorithmTest" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="leetcode_China.queue.*" />
+          <option name="PATTERN" value="leetcode_China.tree.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -180,21 +170,33 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.TwoStacksToQueue" />
       <item itemvalue="Application.RebuildTree" />
       <item itemvalue="Application.MatrixWordPath" />
       <item itemvalue="Application.HouseRobber" />
       <item itemvalue="Application.LongestSubString" />
+      <item itemvalue="Application.MaxSubArraySum" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MaxSubArraySum" />
         <item itemvalue="Application.LongestSubString" />
         <item itemvalue="Application.HouseRobber" />
         <item itemvalue="Application.MatrixWordPath" />
         <item itemvalue="Application.RebuildTree" />
-        <item itemvalue="Application.TwoStacksToQueue" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SshConsoleOptionsProvider">
     <option name="myEncoding" value="UTF-8" />
@@ -264,6 +266,9 @@
       <workItem from="1590050828204" duration="2471000" />
       <workItem from="1590473268787" duration="28691000" />
       <workItem from="1590715890481" duration="17146000" />
+      <workItem from="1590852495008" duration="601000" />
+      <workItem from="1590893763296" duration="2274000" />
+      <workItem from="1590981172048" duration="2776000" />
     </task>
     <task id="LOCAL-00001" summary="4月26日">
       <created>1524745713511</created>
@@ -318,6 +323,44 @@
     <MESSAGE value="6月16日&#10;牛客网算法课第一阶段练习" />
     <MESSAGE value="7月28日&#10;牛客网算法课第二阶段练习，加上一些LeetCode" />
     <option name="LAST_COMMIT_MESSAGE" value="7月28日&#10;牛客网算法课第二阶段练习，加上一些LeetCode" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="806" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1590804273567">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="806" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590804273567" />
+    <state width="1876" height="118" key="GridCell.Tab.0.bottom" timestamp="1590983591380">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="118" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590983591380" />
+    <state width="1876" height="118" key="GridCell.Tab.0.center" timestamp="1590983591380">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="118" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590983591380" />
+    <state width="1876" height="118" key="GridCell.Tab.0.left" timestamp="1590983591380">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="118" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590983591380" />
+    <state width="1876" height="118" key="GridCell.Tab.0.right" timestamp="1590983591380">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="118" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590983591380" />
+    <state width="1876" height="185" key="GridCell.Tab.1.bottom" timestamp="1590983046591">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="185" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590983046591" />
+    <state width="1876" height="185" key="GridCell.Tab.1.center" timestamp="1590983046591">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="185" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590983046591" />
+    <state width="1876" height="185" key="GridCell.Tab.1.left" timestamp="1590983046591">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="185" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590983046591" />
+    <state width="1876" height="185" key="GridCell.Tab.1.right" timestamp="1590983046591">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1876" height="185" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590983046591" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LongestSubSeq$RebuildTree.ic" NAME="RebuildTree Coverage Results" MODIFIED="1590488770992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
