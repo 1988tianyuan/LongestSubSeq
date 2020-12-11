@@ -47,35 +47,34 @@ package string
 // Related Topics 哈希表 双指针 字符串 Sliding Window
 // 👍 4688 👎 0
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 func lengthOfLongestSubstring(s string) int {
 	if len(s) <= 0 {
 		return 0
 	}
 	length := len(s)
-	longest := 1
+	longest := 0
+	// map用于记录当前char的下一个位置，用于滑动start
+	// 当且仅当char出现过（map中有记录），才会滑动start
+	// 滑动的位置就是出现过的char的下一个位置，如果出现过，新窗口就需要避免掉
 	charMap := make(map[uint8]int)
-	for i := 0; i < length; i++ {
-		if i + longest >= length {
-			return longest
-		}
-		charMap[s[i]] = 1
-		curLongest := 1
-		for j := i+1; j < length; j++ {
-			curChar := s[j]
-			if charMap[curChar] == 1 {
-				// 已经出现过
+	start := 0
+	for end := 0; end < length; end++ {
+		curChar := s[end]
+		if charMap[curChar] > 0 {
+			// 出现重复，滑动start
+			if charMap[curChar] > start {
+				start = charMap[curChar]
+			}
+			if start >= length {
 				break
 			}
-			// 没出现过
-			charMap[curChar] = 1
-			curLongest++
 		}
-		if curLongest > longest {
-			longest = curLongest
+		charMap[curChar] = end + 1
+		curGap := end - start + 1
+		if curGap > longest {
+			longest = curGap
 		}
-		charMap = make(map[uint8]int)
 	}
 	return longest
 }
