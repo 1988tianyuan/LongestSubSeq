@@ -27,17 +27,14 @@ import "fmt"
 
 //leetcode submit region begin(Prohibit modification and deletion)
 type Trie struct {
-	char uint8
-	subs map[uint8]*Trie
+	subs [26]*Trie
 	wordEnd bool		// 标记是否是某个单词的结尾
 }
 
-
 /** Initialize your data structure here. */
 func Constructor() Trie {
-	return Trie{char:0, subs:make(map[uint8]*Trie)}
+	return Trie{}
 }
-
 
 /** Inserts a word into the trie. */
 func (this *Trie) Insert(word string)  {
@@ -45,31 +42,14 @@ func (this *Trie) Insert(word string)  {
 		return
 	}
 	current := this
-	if len(this.subs) == 0 {
-		// 树上还没有元素
-		// 将字符逐一挂到树下
-		position := 0
-		for position < len(word) {
-			c := word[position]
-			node := &Trie{char:c, subs:make(map[uint8]*Trie)}
-			current.subs[c] = node
-			current = node
-			position++
+	position := 0
+	for position < len(word) {
+		c := word[position]
+		if current.subs[c - 'a'] == nil {
+			current.subs[c - 'a'] = &Trie{}
 		}
-	} else {
-		// 树上有元素，先找到第一个字符的位置
-		position := 0
-		for position < len(word) {
-			c := word[position]
-			if current.subs[c] != nil {
-				current = current.subs[c]
-			} else {
-				node := &Trie{char:c, subs:make(map[uint8]*Trie)}
-				current.subs[c] = node
-				current = node
-			}
-			position++
-		}
+		current = current.subs[c - 'a']
+		position++
 	}
 	current.wordEnd = true
 }
@@ -77,13 +57,23 @@ func (this *Trie) Insert(word string)  {
 
 /** Returns if the word is in the trie. */
 func (this *Trie) Search(word string) bool {
+	return this.findWord(word, true)
+}
+
+/** Returns if there is any word in the trie that starts with the given prefix. */
+func (this *Trie) StartsWith(prefix string) bool {
+	return this.findWord(prefix, false)
+}
+
+func (this *Trie) findWord(word string, checkEnd bool) bool {
 	if len(word) == 0 {
 		return false
 	}
 	position := 0
 	current := this
 	for position < len(word) {
-		node := current.subs[word[position]]
+		c := word[position]
+		node := current.subs[c - 'a']
 		if node != nil {
 			current = node
 			position++
@@ -91,36 +81,11 @@ func (this *Trie) Search(word string) bool {
 			return false
 		}
 	}
-	return current.wordEnd
-}
-
-/** Returns if there is any word in the trie that starts with the given prefix. */
-func (this *Trie) StartsWith(prefix string) bool {
-	if len(prefix) == 0 {
-		return false
-	}
-	position := 0
-	current := this
-	for position < len(prefix) {
-		node := current.subs[prefix[position]]
-		if node != nil {
-			current = node
-			position++
-		} else {
-			return false
-		}
+	if checkEnd {
+		return current.wordEnd
 	}
 	return true
 }
-
-
-/**
- * Your Trie object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Insert(word);
- * param_2 := obj.Search(word);
- * param_3 := obj.StartsWith(prefix);
- */
 //leetcode submit region end(Prohibit modification and deletion)
 
 func main() {
