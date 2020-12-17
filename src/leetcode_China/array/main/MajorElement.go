@@ -27,7 +27,7 @@ func majorityElement1(nums []int) int {
 	most := 0
 	mostE := 0
 	countMap := make(map[int]int)
-	for _,e := range nums {
+	for _, e := range nums {
 		count := countMap[e] + 1
 		countMap[e] = count
 		if count > most {
@@ -40,11 +40,20 @@ func majorityElement1(nums []int) int {
 //leetcode submit region end(Prohibit modification and deletion)
 //最优解
 func majorityElement2(nums []int) int {
-
-
+	most := 0
+	mostE := 0
+	for _, e := range nums {
+		if most == 0 || mostE == e {
+			most++
+			mostE = e
+		} else {
+			most--
+		}
+	}
+	return mostE
 }
 
 func main() {
-	nums := []int{3,3,4}
-	fmt.Println(majorityElement1(nums))
+	nums := []int{2,2,1,1,3,3,1,2,2}
+	fmt.Println(majorityElement2(nums))
 }
