@@ -72,30 +72,33 @@ func combineSum(candidates []int, tmp []int, start int, result [][]int, target i
 		if sum + candidates[i] > target {
 			break
 		} else if sum + candidates[i] == target {
-			newnewTmp := tmp
-			newnewTmp = append(newnewTmp, candidates[i])
+			// 必须拷贝一个新数组
+			newnewTmp := append(copyArray(tmp), candidates[i])
 			result = append(result, newnewTmp)
-			fmt.Printf("这是时候result是:%v \n", result)
 		} else {
-			newnewTmp := tmp
-			newnewTmp = append(newnewTmp, candidates[i])
+			newnewTmp := append(copyArray(tmp), candidates[i])
 			result = combineSum(candidates, newnewTmp, i, result, target)
 		}
 	}
 	return result
 }
 
-
+func copyArray(array []int) []int {
+	var newArray []int
+	for i := 0; i < len(array); i++ {
+		newArray = append(newArray, array[i])
+	}
+	return newArray
+}
 
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
-	//candidates := []int{2,3,5}
-	//candidates2 := []int{2,3,6,7}
-	//candidates3 := []int{1}
+	candidates := []int{2,3,5}
+	candidates2 := []int{2,3,6,7}
+	candidates3 := []int{1}
 	candidates4 := []int{2,7,6,3,5,1}
-	//candidates4 := []int{1,2,3,5,6,7}
-	//fmt.Println(combinationSum(candidates, 8))
-	//fmt.Println(combinationSum(candidates2, 7))
-	//fmt.Println(combinationSum(candidates3, 2))
+	fmt.Println(combinationSum(candidates, 8))
+	fmt.Println(combinationSum(candidates2, 7))
+	fmt.Println(combinationSum(candidates3, 2))
 	fmt.Println(combinationSum(candidates4, 9))
 }
