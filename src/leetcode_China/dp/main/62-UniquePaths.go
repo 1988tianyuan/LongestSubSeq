@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
 //
 // 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
@@ -53,15 +55,30 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func uniquePaths(m int, n int) int {
-	var matrix [][]int
+	matrix := make([][]int, m)
 	for i := 0; i < m; i++ {
-		var row []int
-		for j := 0; j < n; j++ {
-			row = append(row, 0)
-		}
-		matrix = append(matrix, row)
+		matrix[i] = make([]int, n)
 	}
-
+	matrix[0][0] = 1
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if i == 0 && j == 0 {
+				continue
+			}
+			if i == 0 {
+				matrix[i][j] = matrix[i][j-1]
+				continue
+			}
+			if j == 0 {
+				matrix[i][j] = matrix[i-1][j]
+				continue
+			}
+			matrix[i][j] = matrix[i-1][j] + matrix[i][j-1]
+		}
+	}
+	return matrix[m-1][n-1]
 }
 //leetcode submit region end(Prohibit modification and deletion)
-
+func main() {
+	fmt.Println(uniquePaths(3, 4))
+}
