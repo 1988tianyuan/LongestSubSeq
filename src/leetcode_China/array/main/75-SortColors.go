@@ -66,20 +66,25 @@ func sortColors(nums []int)  {
 		if nums[i] == 0 {
 			swapSortColors(p0, i, nums)
 			p0++
-		} else if nums[i] == 1 {
+			if p0 > p1 {
+				p1 = p0
+			}
+		}
+		if nums[i] == 1 {
 			swapSortColors(p1, i, nums)
 			p1++
 		}
 	}
 }
 func swapSortColors(i1 int, i2 int, nums []int)  {
-	tmp := nums[i2]
-	nums[i2] = nums[i1]
-	nums[i1] = tmp
+	nums[i1], nums[i2] = nums[i2], nums[i1]
 }
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
 	nums := []int{1,2,0,2,2,1,0,1,1}
+	nums2 := []int{2,0,2,1,1,0}
 	sortColors(nums)
+	sortColors(nums2)
 	fmt.Println(nums)
+	fmt.Println(nums2)
 }

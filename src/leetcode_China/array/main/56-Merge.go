@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 //给出一个区间的集合，请合并所有重叠的区间。
 //
@@ -33,25 +36,23 @@ import "fmt"
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+type ByHead [][]int
+func (intervals ByHead) Len() int {
+	return len(intervals)
+}
+func (intervals ByHead) Swap(i, j int) {
+	intervals[i], intervals[j] = intervals[j], intervals[i]
+}
+func (intervals ByHead) Less(i, j int) bool {
+	return intervals[i][0] < intervals[j][0]
+}
+
 func merge(intervals [][]int) [][]int {
 	var tmp []int
 	var result [][]int
 	// 给intervals排序
 	//{3,1,0,2}
-	for i := len(intervals) - 1; i > 0; i-- {
-		check := false
-		for j := 0; j < i; j++ {
-			if intervals[j][0] > intervals[j+1][0] {
-				var temp = intervals[j]
-				intervals[j] = intervals[j+1]
-				intervals[j+1] = temp
-				check = true
-			}
-		}
-		if !check {
-			break
-		}
-	}
+	sort.Sort(ByHead(intervals))
 	for i := 0; i < len(intervals); i++ {
 		if len(tmp) == 0 {
 			tmp = intervals[i]
