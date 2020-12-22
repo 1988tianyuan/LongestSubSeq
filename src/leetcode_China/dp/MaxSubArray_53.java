@@ -7,7 +7,7 @@ package leetcode_China.dp;
  输出: 6
  解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
  */
-public class MaxSubArray {
+public class MaxSubArray_53 {
     public static int maxSubArray(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;

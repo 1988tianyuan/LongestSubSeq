@@ -62,7 +62,6 @@ func checkExists(board [][]byte, word string, x int, y int, position int, mark [
 		// 已经来过了
 		return false
 	}
-	mark[y][x] = 1
 	if board[y][x] == word[position] {
 		if position == len(word) - 1 {
 			mark[y][x] = 1
@@ -70,9 +69,9 @@ func checkExists(board [][]byte, word string, x int, y int, position int, mark [
 		}
 		position++
 	} else {
-		mark[y][x] = 0
 		return false
 	}
+	mark[y][x] = 1
 	if x + 1 < len(board[0]) {
 		d1 := checkExists(board, word, x + 1, y, position, mark)
 		if d1 == true {
