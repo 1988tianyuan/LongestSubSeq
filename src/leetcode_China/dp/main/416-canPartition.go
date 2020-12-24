@@ -37,6 +37,30 @@ import "fmt"
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+func canPartitionNoDp(nums []int) bool {
+	if len(nums) <= 1 {
+		return false
+	}
+	sum := 0
+	for i := 0; i < len(nums); i++ {
+		sum+=nums[i]
+	}
+	if sum%2 != 0 {
+		return false
+	}
+	half := sum>>1
+	bits := make([]byte, half+1)
+	bits[0] = 1
+	for i := 0; i < len(nums); i++ {
+		for j := half-nums[i]; j >= 0; j-- {
+			bits[j+nums[i]] |= bits[j]
+			if bits[half] == 1 {
+				return true
+			}
+		}
+	}
+	return false
+}
 func canPartition(nums []int) bool {
 	if len(nums) <= 1 {
 		return false
@@ -82,9 +106,9 @@ func canPartition(nums []int) bool {
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
 	nums := []int{1, 5, 11, 5}
-	fmt.Println(canPartition(nums))
+	fmt.Println(canPartitionNoDp(nums))
 	nums2 := []int{1, 2, 3, 5}
-	fmt.Println(canPartition(nums2))
+	fmt.Println(canPartitionNoDp(nums2))
 	nums3 := []int{1,2,5}
-	fmt.Println(canPartition(nums3))
+	fmt.Println(canPartitionNoDp(nums3))
 }
