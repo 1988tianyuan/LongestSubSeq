@@ -28,13 +28,8 @@ public class WordBreak_139 {
                     }
                     // 判断 i-len(word)+1 ~ i这一段是否在wordDict中
                     String rangeWord = s.substring(i-word.length()+1, i+1);
-                    for (String tmpWord : wordDict) {
-                        if (Objects.equals(tmpWord, rangeWord)) {
-                            dp[i] = true;
-                            break;
-                        }
-                    }
-                    if (dp[i]) {
+                    if (Objects.equals(rangeWord, word)) {
+                        dp[i] = true;
                         break;
                     }
                 }
