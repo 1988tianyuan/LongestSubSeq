@@ -74,7 +74,6 @@ func detectCycleO1(head *DetectCycleListNode) *DetectCycleListNode {
 	slow := head
 	slowSteps := 0
 	step := false
-	cycleLen := 0
 	for {
 		if fast == nil || slow == nil {
 			return nil
@@ -88,25 +87,16 @@ func detectCycleO1(head *DetectCycleListNode) *DetectCycleListNode {
 		}
 		fast = fast.Next
 		fastSteps++
-		if fast == slow {
-			cycleLen = fastSteps - slowSteps
-			break
-		}
-	}
-	newHead := head
-	searchTimes := 0
-	tmpHead := head
-	for {
-		if searchTimes == cycleLen {
-			if tmpHead == newHead {
-				return tmpHead
+		if fast == slow && !step {
+			newHead := head
+			for {
+				if newHead == fast {
+					return newHead
+				}
+				newHead = newHead.Next
+				fast = fast.Next
 			}
-			newHead = newHead.Next
-			tmpHead = newHead
-			searchTimes = 0
 		}
-		tmpHead = tmpHead.Next
-		searchTimes++
 	}
 }
 func detectCycle(head *DetectCycleListNode) *DetectCycleListNode {
