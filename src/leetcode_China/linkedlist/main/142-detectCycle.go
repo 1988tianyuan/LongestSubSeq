@@ -65,33 +65,72 @@ type DetectCycleListNode struct {
 	Val int
 	Next *DetectCycleListNode
 }
+func detectCycleO1(head *DetectCycleListNode) *DetectCycleListNode {
+	if head == nil || head.Next == nil {
+		return nil
+	}
+	fast := head
+	fastSteps := 0
+	slow := head
+	slowSteps := 0
+	step := false
+	cycleLen := 0
+	for {
+		if fast == nil || slow == nil {
+			return nil
+		}
+		if step {
+			slow = slow.Next
+			slowSteps++
+			step = false
+		} else {
+			step = true
+		}
+		fast = fast.Next
+		fastSteps++
+		if fast == slow {
+			cycleLen = fastSteps - slowSteps
+			break
+		}
+	}
+	newHead := head
+	searchTimes := 0
+	tmpHead := head
+	for {
+		if searchTimes == cycleLen {
+			if tmpHead == newHead {
+				return tmpHead
+			}
+			newHead = newHead.Next
+			tmpHead = newHead
+			searchTimes = 0
+		}
+		tmpHead = tmpHead.Next
+		searchTimes++
+	}
+}
 func detectCycle(head *DetectCycleListNode) *DetectCycleListNode {
 	if head == nil || head.Next == nil {
 		return nil
 	}
-	slow := head
-	fast := head
-	stepped := false
-	for fast != nil && slow != nil {
-		fast = fast.Next
-		if !stepped {
-			slow = slow.Next
-			stepped = true
+	node := head
+	nodeMap := make(map[*DetectCycleListNode]int)
+	for node != nil {
+		if nodeMap[node] == 0 {
+			nodeMap[node] = 1
+			node = node.Next
 		} else {
-			stepped = false
-		}
-		if fast == slow {
-			return fast
+			return node
 		}
 	}
 	return nil
 }
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
-	node4 := &DetectCycleListNode{}
-	node3 := &DetectCycleListNode{Next:node4}
-	node2 := &DetectCycleListNode{Next:node3}
-	node1 := &DetectCycleListNode{Next:node2}
+	node4 := &DetectCycleListNode{Val:4}
+	node3 := &DetectCycleListNode{Next:node4, Val:3}
+	node2 := &DetectCycleListNode{Next:node3, Val:2}
+	node1 := &DetectCycleListNode{Next:node2, Val:1}
 	node4.Next = node2
-	fmt.Printf("%v", detectCycle(node1).Val)
+	fmt.Printf("%v", detectCycleO1(node1).Val)
 }

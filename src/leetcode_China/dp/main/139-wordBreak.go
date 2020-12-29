@@ -51,13 +51,8 @@ func wordBreak(s string, wordDict []string) bool {
 			}
 			// 判断 i-len(word)+1 ~ i这一段是否在wordDict中
 			rangeWord := s[i-len(word)+1:i+1]
-			for _, tmpWord := range wordDict {
-				if tmpWord == rangeWord {
-					dp[i] = true
-					break
-				}
-			}
-			if dp[i] {
+			if rangeWord == word {
+				dp[i] = true
 				break
 			}
 		}
