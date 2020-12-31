@@ -50,62 +50,49 @@ type SortListListNode struct {
   Val int
   Next *SortListListNode
 }
-func sortList(head *SortListListNode) *SortListListNode {
-  if head == nil {
-    return nil
-  }
-  return mergeSort(nil, head, nil)
-}
 
-func mergeSort(pre *SortListListNode, head *SortListListNode, tail *SortListListNode) *SortListListNode {
-  if head == nil || head.Next == nil || head == tail || head.Next == tail {
+func sortList(head *SortListListNode) *SortListListNode {
+  if head == nil || head.Next == nil {
     return head
   }
-  newHead := head
-  if head.Next.Next == tail {
-    // 当前分段只剩两个元素，直接排序
-    if head.Val > head.Next.Val {
-      newHead = head.Next
-      tmp := newHead.Next
-      newHead.Next = head
-      head.Next = tmp
-      //if pre != nil {
-      //  pre.Next = newHead
-      //}
-    }
-    return newHead
-  }
-  mid := findMid(head, tail)
+  var newHead *SortListListNode
+  mid := findMid(head)
   tmpMidNext := mid.Next
-  node1 := mergeSort(pre, head, mid.Next)
-  node2 := mergeSort(mid, tmpMidNext, tail)
-  tmp := node1
-  if node1.Val < node2.Val {
-    newHead = node1
-    tmp = node1
-    node1 = node1.Next
-  } else {
-    newHead = node2
-    tmp = node2
-    node2 = node2.Next
-  }
+  mid.Next = nil
+  node1 := sortList(head)
+  node2 := sortList(tmpMidNext)
+  var tmp *SortListListNode
   for {
-    if node1 == mid.Next {
-      tmp.Next = node2
-      tmp = tmp.Next
+    if node1 == nil {
+      if tmp == nil {
+        newHead = node2
+      } else {
+        tmp.Next = node2
+      }
       break
     }
-    if node2 == tail {
-      tmp.Next = node1
-      tmp = tmp.Next
+    if node2 == nil {
+      if tmp == nil {
+        newHead = node1
+      } else {
+        tmp.Next = node1
+      }
       break
     }
     if node1.Val < node2.Val {
-      tmp.Next = node1
+      if tmp == nil {
+        newHead = node1
+      } else {
+        tmp.Next = node1
+      }
       tmp = node1
       node1 = node1.Next
     } else {
-      tmp.Next = node2
+      if tmp == nil {
+        newHead = node2
+      } else {
+        tmp.Next = node2
+      }
       tmp = node2
       node2 = node2.Next
     }
@@ -113,13 +100,13 @@ func mergeSort(pre *SortListListNode, head *SortListListNode, tail *SortListList
   return newHead
 }
 
-func findMid(head *SortListListNode, tail *SortListListNode) *SortListListNode {
+func findMid(head *SortListListNode) *SortListListNode {
   fast := head
   slow := head
   stepped := false
   for {
     fast = fast.Next
-    if fast.Next == tail {
+    if fast.Next == nil {
       break
     }
     if stepped {
