@@ -43,7 +43,7 @@ public class NumIslands_200 {
         }
 
         private IslandNode unionNode(IslandNode node1, IslandNode node2, Map<IslandNode, Byte> rootMap) {
-            IslandNode newRoot = null;
+            IslandNode newRoot;
             IslandNode node1Root = null;
             int node1Deep = 0;
             if (node1 != null) {
