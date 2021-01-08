@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 //给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 //
@@ -49,38 +52,54 @@ func lowestCommonAncestor(root, p, q *LCATreeNode) *LCATreeNode {
 	if root == p || root == q {
 		return root
 	}
-	leftPR := findNode(root.Left, p)
-	leftQR := findNode(root.Left, q)
-	if !leftPR && !leftQR {
-		return lowestCommonAncestor(root.Right, p, q)
+	treeStackP := list.New()
+	treeStackQ := list.New()
+	if !findNode(root.Left, p, treeStackP) {
+		findNode(root.Right, p, treeStackP)
 	}
-	if leftPR && leftQR {
-		return lowestCommonAncestor(root.Left, p, q)
+	if !findNode(root.Left, q, treeStackQ) {
+		findNode(root.Right, q, treeStackQ)
 	}
-	return root
+	lastSame := root
+	for treeStackP.Len() != 0 && treeStackQ.Len() != 0 {
+		eP := treeStackP.Back()
+		eQ := treeStackQ.Back()
+		if eP.Value != eQ.Value {
+			break
+		} else {
+			lastSame = eP.Value.(*LCATreeNode)
+			treeStackP.Remove(eP)
+			treeStackQ.Remove(eQ)
+		}
+	}
+	return lastSame
 }
-
-func findNode(node *LCATreeNode, target *LCATreeNode) bool {
+func findNode(node *LCATreeNode, target *LCATreeNode, treeStack *list.List) bool {
 	if node == nil {
 		return false
 	}
 	if node == target {
+		treeStack.PushBack(node)
 		return true
 	} else {
-		leftR := findNode(node.Left, target)
-		rightR := findNode(node.Right, target)
+		leftR := findNode(node.Left, target, treeStack)
+		rightR := findNode(node.Right, target, treeStack)
+		if leftR || rightR {
+			treeStack.PushBack(node)
+		}
 		return leftR || rightR
 	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
 func main() {
+	node8 := &LCATreeNode{Val:8}
 	node7 := &LCATreeNode{Val:7}
 	node6 := &LCATreeNode{Val:6}
 	node5 := &LCATreeNode{Val:5, Left:node6, Right:node7}
-	node4 := &LCATreeNode{Val:4}
+	node4 := &LCATreeNode{Val:4, Right:node8}
 	node3 := &LCATreeNode{Val:3}
 	node2 := &LCATreeNode{Val:2, Left:node3, Right:node4}
 	node1 := &LCATreeNode{Val:1, Left:node2, Right:node5}
-	fmt.Println(lowestCommonAncestor(node1, node3, node4).Val)
+	fmt.Println(lowestCommonAncestor(node1, node2, node8).Val)
 }
