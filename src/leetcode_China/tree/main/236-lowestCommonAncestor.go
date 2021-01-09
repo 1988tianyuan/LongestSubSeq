@@ -48,6 +48,7 @@ type LCATreeNode struct {
 	Left *LCATreeNode
 	Right *LCATreeNode
 }
+
 func lowestCommonAncestor(root, p, q *LCATreeNode) *LCATreeNode {
 	if root == p || root == q {
 		return root
