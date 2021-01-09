@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。
 //
 // 假设 nums 只有 一个重复的整数 ，找出 这个重复的数 。
@@ -58,32 +60,40 @@ package main
 // Related Topics 数组 双指针 二分查找
 // 👍 1038 👎 0
 
-// 1,3,4,5,6,5,2
-// 1,5,2,5,3,6,4
+// 1,3,5,2,6,4,5
+// 5,1,2,3,4,5,6
+// 使用“寻找环形链表入口”同样的方法：
+// 链表node就是nums的下标，node.Next就是nums[node]
 //leetcode submit region begin(Prohibit modification and deletion)
 func findDuplicate(nums []int) int {
-	top := len(nums)
-	slow := 0
-	fast := 0
+	slow := nums[0]
+	fast := nums[0]
 	stepped := true
 	for {
+		fast = nums[fast]
 		if !stepped {
-			slow++
+			slow = nums[slow]
 			stepped = true
 		} else {
 			stepped = false
 		}
-		fast++
 		if fast >= len(nums) {
 			fast = 0
 		}
-		if slow == fast {
-
-
-
+		if slow == fast && stepped {
+			fast = nums[0]
+			for slow != fast {
+				fast = nums[fast]
+				slow = nums[slow]
+			}
+			return fast
 		}
-
 	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
-
+func main() {
+	nums := []int{1,3,5,2,6,4,5}
+	fmt.Println(findDuplicate(nums))
+	nums2 := []int{3,1,3,4,2}
+	fmt.Println(findDuplicate(nums2))
+}
