@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //给定一个非空的整数数组，返回其中出现频率前 k 高的元素。
 //
 //
@@ -31,7 +33,21 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func topKFrequent(nums []int, k int) []int {
-
+	if len(nums) == 0 {
+		return []int{}
+	}
+	topKMap := make(map[int]int)
+	for _,num := range nums {
+		if topKMap[num] == 0 {
+			topKMap[num] = 1
+		} else {
+			topKMap[num] += 1
+		}
+	}
+	
 }
 //leetcode submit region end(Prohibit modification and deletion)
-
+func main() {
+	nums := []int{1,1,1,2,2,3}
+	fmt.Println(topKFrequent(nums, 2))
+}
