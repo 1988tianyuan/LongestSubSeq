@@ -1,7 +1,9 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
+	"strconv"
 )
 
 //给定一个经过编码的字符串，返回它解码后的字符串。
@@ -43,43 +45,86 @@ import (
 // 输入：s = "3[a2[c]]"
 //输出："accaccacc"
 //leetcode submit region begin(Prohibit modification and deletion)
+const (
+	leftC = 91
+	rightC = 93
+)
 func decodeString(s string) string {
 	if len(s) == 0 {
 		return s
 	}
-	return decodeInternal(s)
-}
-
-func decodeInternal(s string) string {
 	result := ""
-	tmpEnd := 0
-	tmp := ""
-	for i := 0; i < len(s); {
-		tmp+=string(s[i])
-		num := 0
-		for tmpEnd != len(s) {
-			if tmp == s[tmpEnd:tmpEnd+len(tmp)] {
-				num++
-				tmpEnd+=len(tmp)
-			} else {
-				break
+	tmpResult := ""
+	tmpNum := ""
+	stack := list.New()
+	for _, char := range s {
+		if isSingleNum(char) != "" {
+			tmpNum = tmpNum + isSingleNum(char)
+			continue
+		} else if tmpNum != "" {
+			stack.PushFront(tmpNum)
+			tmpNum = ""
+		}
+		if char == rightC {
+			// 出栈解码
+			for stack.Len() != 0 {
+				e := stack.Front()
+				stack.Remove(e)
+				innerChar := e.Value.(string)
+				tmpNum := isNum(innerChar)
+				if tmpNum == -1 {
+					tmpResult = innerChar + tmpResult
+				} else {
+					tmpTmpResult := tmpResult
+					for tmpNum > 1 {
+						tmpResult = tmpTmpResult + tmpResult
+						tmpNum--
+					}
+					stack.PushFront(tmpResult)
+					tmpResult = ""
+					break
+				}
+			}
+		} else {
+			// 入栈
+			if char != leftC {
+				stack.PushFront(string(char))
 			}
 		}
-		fmt.Printf("tmp:%s, num:%d\n", tmp, num)
-		if num != 1 {
-			i = tmpEnd
-			tmp = ""
-		} else {
-			i++
-		}
-
+	}
+	result = tmpResult
+	for stack.Len() != 0 {
+		e := stack.Front()
+		stack.Remove(e)
+		innerChar := e.Value.(string)
+		result = innerChar + result
 	}
 	return result
 }
+
+func isNum(char string) int {
+	num,err := strconv.ParseInt(char, 10, 32)
+	if err == nil {
+		return int(num)
+	}
+	return -1
+}
+func isSingleNum(char int32) string {
+	if char>= 48 && char <= 57 {
+		return string(char)
+	}
+	return ""
+}
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
-	s := "accaccacc"
+	s := "3[a2[c]]"
 	fmt.Println(decodeString(s))
+	s2 := "abc3[cd]xyz"
+	fmt.Println(decodeString(s2))
+	s3 := "2[abc]3[cd]ef"
+	fmt.Println(decodeString(s3))
+	s4 := "100[leetcode]"
+	fmt.Println(decodeString(s4))
 }
 
 
