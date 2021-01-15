@@ -46,6 +46,39 @@ func pathSum(root *PathSumTreeNode, sum int) int {
 	pathSumSearch(root, sum, &num)
 	return num
 }
+
+func pathSumOpt(root *PathSumTreeNode, sum int) int {
+	sumMap := make([]int, 0)
+	num := 0
+	level := 0
+	pathSumOptInternal(root, sum, &num, sumMap, level)
+	return num
+}
+func pathSumOptInternal(root *PathSumTreeNode, sum int, num *int, sumMap []int, level int) {
+	if root == nil {
+		return
+	}
+	preLevel := level - 1
+	if preLevel < 0 {
+		if root.Val == sum {
+			*num++
+		}
+	} else {
+		for i := 0; i < level; i++ {
+			if sum - sumMap[i] == root.Val {
+				*num++
+			}
+			sumMap[i]+=root.Val
+		}
+		if len(sumMap) <= level {
+			sumMap = append(sumMap, root.Val)
+		} else {
+			sumMap[level] = root.Val
+		}
+	}
+
+}
+
 func pathSumSearch(root *PathSumTreeNode, sum int, num *int) {
 	if root == nil {
 		return
