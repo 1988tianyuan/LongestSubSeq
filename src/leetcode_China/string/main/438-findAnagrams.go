@@ -47,6 +47,9 @@ import "fmt"
 //s: "cbaebabacd" p: "abc"
 //leetcode submit region begin(Prohibit modification and deletion)
 func findAnagrams(s string, p string) []int {
+	if len(s) == 0 || len(p) > len(s) {
+		return []int{}
+	}
 	length := len(p)
 	result := make([]int, 0)
 	pArray := make([]int, 26)
@@ -55,25 +58,29 @@ func findAnagrams(s string, p string) []int {
 		a = a - 'a'
 		pArray[a] = pArray[a] + 1
 	}
+	for i := 0; i < length; i++ {
+		a := s[i] - 'a'
+		tmpArray[a] = tmpArray[a] + 1
+	}
 	for i := 0; i + length <= len(s); i++ {
-		if isAnagram(s, i, pArray, tmpArray, len(p)) {
+		endA := s[i+length-1] - 'a'
+		if i > 0 {
+			tmpArray[s[i-1]-'a'] = tmpArray[s[i-1]-'a'] - 1
+			tmpArray[endA] = tmpArray[endA] + 1
+		}
+		if isAnagram(pArray, tmpArray) {
 			result = append(result, i)
 		}
 	}
 	return result
 }
 
-func isAnagram(s string, start int, pArray []int, tmpArray []int, length int) bool {
-	for i := start; i < start + length; i++ {
-		a := s[i] - 'a'
-		tmpArray[a] = tmpArray[a] + 1
-	}
+func isAnagram(pArray []int, tmpArray []int) bool {
 	isAnagram := true
 	for i := 0; i < 26; i++ {
 		if pArray[i] != tmpArray[i] {
 			isAnagram = false
 		}
-		tmpArray[i] = 0
 	}
 	return isAnagram
 }
