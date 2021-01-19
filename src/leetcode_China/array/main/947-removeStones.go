@@ -55,7 +55,59 @@ package main
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func removeStones(stones [][]int) int {
+	nodes := make([]*StoneNode, len(stones))
+	for i := 0; i < len(stones); i++ {
+		nodes[i] = &StoneNode{}
+	}
+	for i := 1; i < len(nodes); i++ {
+		cur := nodes[i]
+		pre := nodes[i-1]
+		if stones[i][0] == stones[i-1][0] || stones[i][1] == stones[i][1] {
+			unionStone(pre, cur)
+		}
+	}
+}
 
+func unionStone(pre *StoneNode, cur *StoneNode) {
+	tmpPre := pre
+	for {
+		if tmpPre.father == nil {
+			break
+		}
+		tmpPre = tmpPre.father
+	}
+	var preRoot *StoneNode
+	if tmpPre != pre {
+		preRoot = tmpPre.father
+	}
+	tmpCur := cur
+	for {
+		if tmpCur.father == nil {
+			break
+		}
+		tmpCur = tmpCur.father
+	}
+	var curRoot *StoneNode
+	if tmpCur != cur {
+		curRoot = tmpCur.father
+	}
+	if preRoot == nil && curRoot != nil {
+		pre.father = curRoot
+		return
+	}
+	if preRoot != nil && curRoot == nil {
+		cur.father = preRoot
+		return
+	}
+	if preRoot != nil && curRoot != nil {
+		preRoot.father = curRoot
+		return
+	}
+	cur.father = pre
+}
+
+type StoneNode struct {
+	father *StoneNode
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
