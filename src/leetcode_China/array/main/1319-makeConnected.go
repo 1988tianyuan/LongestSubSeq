@@ -75,16 +75,14 @@ func makeConnected(n int, connections [][]int) int {
 			connectPos := connectMarks[first]
 			connectedSet := connectedSets[connectPos]
 			connectedSet.set[second] = 1
-			connectedSet.lineNum++
 			connectMarks[second] = connectPos
 		} else if connectMarks[first] == 0 && connectMarks[second] != 0 {
 			connectPos := connectMarks[second]
 			connectedSet := connectedSets[connectPos]
 			connectedSet.set[first] = 1
-			connectedSet.lineNum++
 			connectMarks[first] = connectPos
 		} else if connectMarks[first] == 0 && connectMarks[second] == 0 {
-			newConnectedSet := &ConnectedSet{lineNum: 1, set: map[int]int{}}
+			newConnectedSet := &ConnectedSet{set: map[int]int{}}
 			newConnectedSet.set[first] = 1
 			newConnectedSet.set[second] = 1
 			connectedSets = append(connectedSets, newConnectedSet)
@@ -92,52 +90,105 @@ func makeConnected(n int, connections [][]int) int {
 			connectMarks[second] = len(connectedSets) - 1
 			setsNum++
 		} else {
-			userMark := connectMarks[first]
-			useSet := connectedSets[userMark]
+			useMark := connectMarks[first]
+			useSet := connectedSets[useMark]
 			if connectMarks[first] != connectMarks[second] {
 				noUseMark := connectMarks[second]
 				noUseSet := connectedSets[noUseMark]
 				for k := range noUseSet.set {
-					connectMarks[k] = connectMarks[first]
+					connectMarks[k] = useMark
 					useSet.set[k] = 1
 				}
-				useSet.lineNum+=noUseSet.lineNum
 				setsNum--
 				connectedSets[noUseMark] = nil
 			}
-			useSet.lineNum++
 		}
 	}
 	for i := 0; i < n; i++ {
 		if connectMarks[i] == 0 {
-			newConnectedSet := &ConnectedSet{set: map[int]int{}}
-			newConnectedSet.set[i] = 1
-			connectedSets = append(connectedSets, newConnectedSet)
 			setsNum++
 		}
 	}
 	return setsNum - 1
 }
 
+func makeConnectedByDisjointSets(n int, connections [][]int) int {
+	if len(connections) - n + 1 < 0 {
+		return -1
+	}
+	connectMarks := make([]int, n)
+	// 初始化并查集
+	for i := 0; i < n; i++ {
+		connectMarks[i] = i
+	}
+	// 合并各个并查集
+	for _, connection := range connections {
+		unionSet(connection[0], connection[1], connectMarks)
+	}
+	// 统计root个数
+	sets := make(map[int]int)
+	for i := 0; i < n; i++ {
+		root,_ := findRootIndex(i, connectMarks)
+		sets[root] = 1
+	}
+	return len(sets) - 1
+}
+
+func unionSet(first int, second int, connectMarks []int) {
+	father0, depth0 := findRootIndex(first, connectMarks)
+	father1, depth1 := findRootIndex(second, connectMarks)
+	if father0 != father1 {
+		// 将两个集合的root合并
+		if depth0 < depth1 {
+			connectMarks[father0] = father1
+		} else {
+			connectMarks[father1] = father0
+		}
+	}
+}
+
+func findRootIndex(i int, connectMarks []int) (int, int) {
+	father := connectMarks[i]
+	depth := 0
+	// 向上遍历找到当前节点的root
+	for father != i && father != connectMarks[father] {
+		father = connectMarks[father]
+		depth++
+	}
+	// 扁平化并查集树
+	cur := i
+	for {
+		if cur == father {
+			break
+		}
+		tmpCur := connectMarks[cur]
+		connectMarks[cur] = father
+		cur = tmpCur
+	}
+	return father, depth
+}
+
 type ConnectedSet struct {
-	lineNum int
 	set map[int]int
 }
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
 	connections := [][]int{{0,1},{0,2},{0,3},{1,2},{1,3}}
-	fmt.Println(makeConnected(6, connections))
+	fmt.Println(makeConnectedByDisjointSets(6, connections))
 
 	connections2 := [][]int{{0,1},{0,2},{1,2}}
-	fmt.Println(makeConnected(4, connections2))
+	fmt.Println(makeConnectedByDisjointSets(4, connections2))
 
 	connections3 := [][]int{{0,1},{0,2},{3,4},{2,3}}
-	fmt.Println(makeConnected(5, connections3))
+	fmt.Println(makeConnectedByDisjointSets(5, connections3))
 
 	connections4 := [][]int{{1,5},{1,7},{1,2},{1,4},{3,7},{4,7},{3,5},{0,6},{0,1},{0,4},{2,6},{0,3},{0,2}}
-	fmt.Println(makeConnected(12, connections4))
+	fmt.Println(makeConnectedByDisjointSets(12, connections4))
 
 	connections5 := [][]int{{0,1},{0,2},{0,3},{1,3}}
-	fmt.Println(makeConnected(6, connections5))
+	fmt.Println(makeConnectedByDisjointSets(6, connections5))
+
+	connections6 := [][]int{{1,4},{0,3},{1,3},{3,7},{2,7},{0,1},{2,4},{3,6},{5,6},{6,7},{4,7},{0,7},{5,7}}
+	fmt.Println(makeConnectedByDisjointSets(11, connections6))
 }
 
