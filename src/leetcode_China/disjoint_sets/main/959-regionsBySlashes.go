@@ -93,7 +93,8 @@ const (
 	rightDown = 2
 	leftDown = 3
 	rightUp = 4
-	allSpace = 5
+	leftSpace = 5
+	rightSpace = 6
 )
 
 func regionsBySlashes(grid []string) int {
@@ -116,13 +117,13 @@ func regionsBySlashes(grid []string) int {
 			// 和左边节点合并
 			unionSlashNode(i-1, i, sets)
 		}
-		if curNode.slash != leftDown && i-2*sideLen >= 0 {
+		if curNode.slash != leftDown && curNode.slash != rightSpace && i-2*sideLen >= 0 {
 			// 和上方节点合并
 			upOriginI := i/2-sideLen
 			up0Index := upOriginI*2
 			up1Index := upOriginI*2 + 1
 			up0 := sets[up0Index]
-			if up0.slash == leftDown || up0.slash == rightDown || up0.slash == allSpace {
+			if up0.slash == leftDown || up0.slash == rightDown || up0.slash == leftSpace || up0.slash == rightSpace {
 				unionSlashNode(up0Index, i, sets)
 			} else {
 				unionSlashNode(up1Index, i, sets)
@@ -172,8 +173,8 @@ func addNode(slash uint8, sets []*SlashNode, i int) []*SlashNode {
 		node2Slash = rightUp
 		break
 	case SPACE:
-		node1Slash = allSpace
-		node2Slash = allSpace
+		node1Slash = leftSpace
+		node2Slash = rightSpace
 	}
 	node1 := &SlashNode{slash:node1Slash, fatherIndex:2*i}
 	sets[2*i] = node1
