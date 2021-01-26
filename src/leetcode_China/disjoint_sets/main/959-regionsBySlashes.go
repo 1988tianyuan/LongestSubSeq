@@ -133,30 +133,36 @@ func regionsBySlashes(grid []string) int {
 	// 遍历并查集数组找到root总数
 	rootMap := make(map[int]int)
 	for i := 0; i < len(sets); i++ {
-		rootI := findRoot(i, sets)
+		rootI,_ := findRoot(i, sets)
 		rootMap[rootI] = 1
 	}
 	return len(rootMap)
 }
 
 func unionSlashNode(node1Index int, node2Index int, sets []*SlashNode) {
-	root1Index := findRoot(node1Index, sets)
-	root2Index := findRoot(node2Index, sets)
+	root1Index,depth1 := findRoot(node1Index, sets)
+	root2Index,depth2 := findRoot(node2Index, sets)
 	if root1Index != root2Index {
-		sets[root2Index].fatherIndex = root1Index
+		if depth1 > depth2 {
+			sets[root2Index].fatherIndex = root1Index
+		} else {
+			sets[root1Index].fatherIndex = root2Index
+		}
 	}
 }
 
-func findRoot(i int, sets []*SlashNode) int {
+func findRoot(i int, sets []*SlashNode) (int,int) {
+	depth := 0
 	node := sets[i]
 	fatherI := node.fatherIndex
 	fatherNode := sets[fatherI]
 	for fatherI != i {
-		fatherI = fatherNode.fatherIndex
+		depth++
 		fatherNode = sets[fatherI]
 		i = fatherI
+		fatherI = fatherNode.fatherIndex
 	}
-	return fatherI
+	return fatherI, depth
 }
 
 
@@ -188,29 +194,29 @@ type SlashNode struct {
 }
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
-	//// 3
-	//grid := []string{"//","/ "}
-	//fmt.Println(regionsBySlashes(grid))
-	//
-	//// 5
-	//grid2 := []string{"/\\","\\/"}
-	//fmt.Println(regionsBySlashes(grid2))
-	//
-	//// 4
-	//grid3 := []string{"\\/","/\\"}
-	//fmt.Println(regionsBySlashes(grid3))
-	//
-	//// 2
-	//grid4 := []string{" /","/ "}
-	//fmt.Println(regionsBySlashes(grid4))
-	//
-	//// 1
-	//grid5 := []string{" /","  "}
-	//fmt.Println(regionsBySlashes(grid5))
-	//
-	//// 4
-	//grid6 := []string{" /\\"," \\/","\\  "}
-	//fmt.Println(regionsBySlashes(grid6))
+	// 3
+	grid := []string{"//","/ "}
+	fmt.Println(regionsBySlashes(grid))
+
+	// 5
+	grid2 := []string{"/\\","\\/"}
+	fmt.Println(regionsBySlashes(grid2))
+
+	// 4
+	grid3 := []string{"\\/","/\\"}
+	fmt.Println(regionsBySlashes(grid3))
+
+	// 2
+	grid4 := []string{" /","/ "}
+	fmt.Println(regionsBySlashes(grid4))
+
+	// 1
+	grid5 := []string{" /","  "}
+	fmt.Println(regionsBySlashes(grid5))
+
+	// 4
+	grid6 := []string{" /\\"," \\/","\\  "}
+	fmt.Println(regionsBySlashes(grid6))
 
 	// 3
 	grid7 := []string{"\\/\\ "," /\\/"," \\/ ","/ / "}
