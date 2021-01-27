@@ -72,58 +72,42 @@ func leastInterval(tasks []byte, n int) int {
 		taskOriginMap[tasks[i]]++
 	}
 	biggest := 0
+	biggestTimes := 0
 	for _,v := range taskOriginMap {
 		if biggest == 0 || v > biggest {
 			biggest = v
+			biggestTimes = 1
+		} else if v == biggest {
+			biggestTimes++
 		}
 	}
-
-
 	step := n + 1
-	taskMap := make(map[int]int, 0)
-	var cur byte
-	var num int
-	for i := 0; i < len(tasks); i++ {
-		if cur == 0 {
-			cur = tasks[i]
-			num = 1
-			biggest = num
-			continue
-		}
-		if cur != tasks[i] {
-			taskMap[num]++
-			num = 1
-			cur = tasks[i]
-		} else {
-			num++
-		}
-		if num > biggest {
-			biggest = num
-		}
+	leastCount := (biggest-1) * (step) + biggestTimes
+	if leastCount < len(tasks) {
+		return len(tasks)
 	}
-	taskMap[num]++
-
-	maxCount := taskMap[biggest]
-	if maxCount <= step {
-		return (biggest-1) * (step) + taskMap[biggest]
-	}
-	extra := maxCount - step
-	return ((biggest-1) * (step) + 1) * (extra+1)
+	return leastCount
 }
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
-	//task := []byte{'A','A','A','A','A','A','B','C','D','E','F','G'}
-	//fmt.Println(leastInterval(task, 2))
-	//
-	//task2 := []byte{'A','A','A','B','B','B'}
-	//fmt.Println(leastInterval(task2, 2))
-	//
-	//task3 := []byte{'A','A','A','B','B','B'}
-	//fmt.Println(leastInterval(task3, 0))
-	//
-	//task4 := []byte{'A','A','A','A','A','A','B','B','B','C','C','D'}
-	//fmt.Println(leastInterval(task4, 2))
+	task := []byte{'A','A','A','A','A','A','B','C','D','E','F','G'}
+	fmt.Println(leastInterval(task, 2))
+
+	task2 := []byte{'A','A','A','B','B','B'}
+	fmt.Println(leastInterval(task2, 2))
+
+	task3 := []byte{'A','A','A','B','B','B'}
+	fmt.Println(leastInterval(task3, 0))
+
+	task4 := []byte{'A','A','A','A','A','A','B','B','B','C','C','D'}
+	fmt.Println(leastInterval(task4, 2))
 
 	task5 := []byte{'A','B','C','D','E','A','B','C','D','E'}
 	fmt.Println(leastInterval(task5, 4))
+
+	task6 := []byte{'A','A','A','B','B','B','C','C','C','D','D','E'}
+	fmt.Println(leastInterval(task6, 2))
+
+	task7 := []byte{'A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L','M','M','N','N','O','O','P','P','Q','Q','R','R','S','S','T','T','U','U','V','V','W','W','X','X','Y','Y','Z','Z'}
+	fmt.Println(leastInterval(task7, 2))
 }
