@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
 
 //请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。
 //如果气温在这之后都不会升高，请在该位置用 0 来代替。
@@ -19,20 +22,26 @@ func dailyTemperatures(T []int) []int {
 	if len(T) == 0 {
 		return []int{}
 	}
+	stask := list.New()
 	tempMap := make(map[int]int)
 	result := make([]int, len(T))
 	result[len(T)-1] = 0
 	tempMap[T[len(T)-1]] = len(T)-1
+	stask.PushFront(T[len(T)-1])
 	for i:=len(T)-2; i>=0; i-- {
-		smallest := 0
-		for j:=T[i]+1; j<=100; j++ {
-			if tempMap[j] != 0 {
-				if smallest == 0 || tempMap[j]-i<smallest {
-					smallest = tempMap[j]-i
-				}
+		step := 0
+		for stask.Len() != 0 {
+			e := stask.Front()
+			next := e.Value.(int)
+			if next > T[i] {
+				step = tempMap[next] - i
+				break
+			} else {
+				stask.Remove(e)
 			}
 		}
-		result[i] = smallest
+		stask.PushFront(T[i])
+		result[i] = step
 		tempMap[T[i]] = i
 	}
 	return result
