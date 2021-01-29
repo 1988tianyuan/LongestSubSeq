@@ -22,29 +22,31 @@ func dailyTemperatures(T []int) []int {
 	if len(T) == 0 {
 		return []int{}
 	}
-	stask := list.New()
-	tempMap := make(map[int]int)
+	stack := list.New()
 	result := make([]int, len(T))
 	result[len(T)-1] = 0
-	tempMap[T[len(T)-1]] = len(T)-1
-	stask.PushFront(T[len(T)-1])
+	stack.PushFront(&TempWrapper{value: T[len(T)-1], i:len(T)-1})
 	for i:=len(T)-2; i>=0; i-- {
 		step := 0
-		for stask.Len() != 0 {
-			e := stask.Front()
-			next := e.Value.(int)
-			if next > T[i] {
-				step = tempMap[next] - i
+		for stack.Len() != 0 {
+			e := stack.Front()
+			next := e.Value.(*TempWrapper)
+			if next.value > T[i] {
+				step = next.i - i
 				break
 			} else {
-				stask.Remove(e)
+				stack.Remove(e)
 			}
 		}
-		stask.PushFront(T[i])
+		stack.PushFront(&TempWrapper{value: T[i], i:i})
 		result[i] = step
-		tempMap[T[i]] = i
 	}
 	return result
+}
+
+type TempWrapper struct {
+	i int
+	value int
 }
 //leetcode submit region end(Prohibit modification and deletion)
 func main() {
